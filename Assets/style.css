@@ -1,1 +1,19 @@
+.header {
+    display: flex;
+}
 
+.highScores {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 50%;
+    
+    
+}
+
+.timer {
+    text-align: right;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 50%;
+    
+}
