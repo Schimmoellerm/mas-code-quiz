@@ -24,11 +24,13 @@ let Questions = [
     }
 ];
 
+//Timer Variables
 let timer = document.querySelector("#timer");
 let timeRemaining = 76;
 
+/**************************************************************/
 //Functions
-//Timer Function (75 seconds)
+//Timer (75 seconds)
 function countdown() {
     let countdownInterval = setInterval(function() {
         timeRemaining--;
@@ -40,6 +42,11 @@ function countdown() {
     }, 1000);
 }
 
+//Generate Questions
+
+//Answer Checker
+
+/*************************************************************/
 //Start Button
 document.getElementById("start").addEventListener("click", function(){
     countdown();
