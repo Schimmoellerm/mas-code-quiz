@@ -10,11 +10,11 @@ let Questions = [
      Correct: "All of the Above"
     },
     {Question: "The condition in an if/else statement is enclosed with?",
-     Answers: ["Quotes", "Curly Brasckets", "Parenthese", "Square Brackets"],
-     Correct: "Parenthese"
+     Answers: ["Quotes", "Curly Brasckets", "Parentheses", "Square Brackets"],
+     Correct: "Parentheses"
     },
     {Question: "String values must be enclosed within _____ when being assigned to variables.",
-     Answers: ["Commas", "Curly Brackets", "Quotes", "Parenthese"],
+     Answers: ["Commas", "Curly Brackets", "Quotes", "Parentheses"],
      Correct: "Quotes"
     },
     {
@@ -24,17 +24,21 @@ let Questions = [
     }
 ];
 
-//Timer Variables
+//countdown Variables
 let timer = document.querySelector("#timer");
 let timeRemaining = 76;
 
-//Questions Generator Variables
+//generateQs Variables
 let questionBox = document.querySelector("#QuestionBox");
 let answer1 = document.querySelector("#Answer1");
 let answer2 = document.querySelector("#Answer2");
 let answer3 = document.querySelector("#Answer3");
 let answer4 = document.querySelector("#Answer4");
 let Qindex = 0;
+
+//quizComplete Variables
+let score;
+let reset = document.querySelector("#reset");
 
 /**************************************************************/
 //Functions
@@ -45,7 +49,6 @@ function countdown() {
         timer.textContent = "Time: " + timeRemaining;
         if(timeRemaining === 0) {
             clearInterval(countdownInterval);
-            alert("Times Up!");
         }
     }, 1000);
 }
@@ -53,8 +56,22 @@ function countdown() {
 //Generate Questions
 function generateQs() {
     questionBox.innerHTML = "";
-
-    for(let i = 0; i< Questions.length; i++) {
+    answer1.innerHTML= "";
+    answer2.innerHTML= "";
+    answer3.innerHTML= "";
+    answer4.innerHTML= "";
+    document.getElementById("reset").style.visibility = "hidden";
+    
+    
+    if (Qindex >= Questions.length) {
+        document.getElementById("Answer1").style.visibility = "hidden";
+        document.getElementById("Answer2").style.visibility = "hidden";
+        document.getElementById("Answer3").style.visibility = "hidden";
+        document.getElementById("Answer4").style.visibility = "hidden";
+        quizComplete();
+        
+    }else {
+        
         let postedQ = Questions[Qindex].Question;
         let postedA1 = Questions[Qindex].Answers[0];
         let postedA2 = Questions[Qindex].Answers[1];
@@ -65,15 +82,62 @@ function generateQs() {
         answer2.textContent = postedA2;
         answer3.textContent = postedA3;
         answer4.textContent = postedA4;
+        answer1.addEventListener("click", (checker));
+        answer2.addEventListener("click", (checker));
+        answer3.addEventListener("click", (checker));
+        answer4.addEventListener("click", (checker));
+        document.getElementById("Answer1").style.visibility = "visible";
+        document.getElementById("Answer2").style.visibility = "visible";
+        document.getElementById("Answer3").style.visibility = "visible";
+        document.getElementById("Answer4").style.visibility = "visible";
     }
-
 }
 
 //Answer Checker
+function checker(event) {
+    let userAnswer = event.target.textContent;
+    console.log(userAnswer);
+    console.log(Questions[Qindex].Correct);
+
+    if (userAnswer === Questions[Qindex].Correct) {
+        console.log("correct");
+        Qindex++;
+        generateQs();
+    }else {
+        console.log("incorrect");
+        Qindex++;
+        generateQs();
+    } 
+}
+
+//End Quiz Function
+function quizComplete() {
+    console.log("Quiz Complete");
+    let score = timeRemaining;
+    console.log(score);
+    //need to create high scores display
+    //need to hide timer  
+    document.getElementById("reset").style.visibility = "visible";
+    
+}
 
 /*************************************************************/
+//Buttons
 //Start Button
 document.getElementById("start").addEventListener("click", function(){
     countdown();
     generateQs();
 });
+
+//Restart Quiz
+reset.addEventListener("click", function(){
+    console.log("something");
+    Qindex = 0;
+    timeRemaining = 76;
+    generateQs();
+    countdown();  
+});
+
+//Log High Scores
+
+//Check High Scores

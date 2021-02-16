@@ -33,6 +33,11 @@
 
 .Answer {
     text-align: left;
+    visibility: hidden;
+}
+
+.reset {
+    visibility: hidden;
 }
 
 
