@@ -28,6 +28,14 @@ let Questions = [
 let timer = document.querySelector("#timer");
 let timeRemaining = 76;
 
+//Questions Generator Variables
+let questionBox = document.querySelector("#QuestionBox");
+let answer1 = document.querySelector("#Answer1");
+let answer2 = document.querySelector("#Answer2");
+let answer3 = document.querySelector("#Answer3");
+let answer4 = document.querySelector("#Answer4");
+let Qindex = 0;
+
 /**************************************************************/
 //Functions
 //Timer (75 seconds)
@@ -43,6 +51,23 @@ function countdown() {
 }
 
 //Generate Questions
+function generateQs() {
+    questionBox.innerHTML = "";
+
+    for(let i = 0; i< Questions.length; i++) {
+        let postedQ = Questions[Qindex].Question;
+        let postedA1 = Questions[Qindex].Answers[0];
+        let postedA2 = Questions[Qindex].Answers[1];
+        let postedA3 = Questions[Qindex].Answers[2];
+        let postedA4 = Questions[Qindex].Answers[3];
+        questionBox.textContent = postedQ;
+        answer1.textContent = postedA1;
+        answer2.textContent = postedA2;
+        answer3.textContent = postedA3;
+        answer4.textContent = postedA4;
+    }
+
+}
 
 //Answer Checker
 
@@ -50,4 +75,5 @@ function countdown() {
 //Start Button
 document.getElementById("start").addEventListener("click", function(){
     countdown();
+    generateQs();
 });

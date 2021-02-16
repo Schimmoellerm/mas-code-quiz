@@ -15,15 +15,24 @@
     width: 50%;    
 }
 
-.wrapper {
+.QuestionBox {
     margin: auto;
-    height: 500px;
+    height: auto;
     width: 500px;
 }
 
-.wrapper h1 {
+.QuestionBox h1 {
     text-align: center;
 }
 
+.AnswersBox {
+    margin: auto;
+    height: auto;
+    width: 100px;
+}
+
+.Answer {
+    text-align: left;
+}
 
 
