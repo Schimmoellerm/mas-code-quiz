@@ -27,6 +27,7 @@ let Questions = [
 //countdown Variables
 let timer = document.querySelector("#timer");
 let timeRemaining = 76;
+let countdownInterval;
 
 //generateQs Variables
 let questionBox = document.querySelector("#QuestionBox");
@@ -37,14 +38,18 @@ let answer4 = document.querySelector("#Answer4");
 let Qindex = 0;
 
 //quizComplete Variables
-let score;
+let score = 0;
 let reset = document.querySelector("#reset");
+let submit = document.querySelector("#submit");
+let outputScore = document.querySelector("#outputScore");
 
 /**************************************************************/
 //Functions
 //Timer (75 seconds)
 function countdown() {
-    let countdownInterval = setInterval(function() {
+    clearInterval(countdownInterval);
+    document.getElementById("timer").style.visibility = "visible";
+    countdownInterval = setInterval(function() {
         timeRemaining--;
         timer.textContent = "Time: " + timeRemaining;
         if(timeRemaining === 0) {
@@ -55,12 +60,13 @@ function countdown() {
 
 //Generate Questions
 function generateQs() {
+    score = 0;
     questionBox.innerHTML = "";
     answer1.innerHTML= "";
     answer2.innerHTML= "";
     answer3.innerHTML= "";
     answer4.innerHTML= "";
-    document.getElementById("reset").style.visibility = "hidden";
+    document.getElementById("submitDiv").style.visibility = "hidden";
     
     
     if (Qindex >= Questions.length) {
@@ -113,11 +119,13 @@ function checker(event) {
 //End Quiz Function
 function quizComplete() {
     console.log("Quiz Complete");
+    document.getElementById("timer").style.visibility = "hidden";
     let score = timeRemaining;
     console.log(score);
+    outputScore.textContent = "Your Score is: " + score;
     //need to create high scores display
     //need to hide timer  
-    document.getElementById("reset").style.visibility = "visible";
+    document.getElementById("submitDiv").style.visibility = "visible";
     
 }
 

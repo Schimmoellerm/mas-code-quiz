@@ -12,13 +12,15 @@
     text-align: right;
     display: flex;
     flex-wrap: nowrap;
-    width: 50%;    
+    width: 50%;
+    visibility: visible;    
 }
 
 .QuestionBox {
     margin: auto;
     height: auto;
     width: 500px;
+    
 }
 
 .QuestionBox h1 {
@@ -36,8 +38,14 @@
     visibility: hidden;
 }
 
-.reset {
+.submitDiv {
     visibility: hidden;
+    margin: auto;
+    height: auto;
+    width: 500px;  
 }
 
+.viewHighScores {
+    visibility: "hidden"
+}
 

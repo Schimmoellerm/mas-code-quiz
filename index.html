@@ -9,7 +9,9 @@
 </head>
 <body>
     <div class="header">
-        <p class="highScores" id="highScores">View Highscores</p>
+        <div class="highScores" id="highScores">
+            <button class="highScorsBtn" id="highScorsBtn">View High Scores</button>
+        </div>
         <p class="timer" id="timer">Timer:</p>   
     </div>
 
@@ -26,9 +28,14 @@
         <button class="Answer" id="Answer3"></button>
         <button class="Answer" id="Answer4"></button>
     </div>
-    <div>
+    <div class="submitDiv" id="submitDiv">
+        <p class="outputScore" id="outputScore"></p>
+        <label for="initials">Enter initails here:</label>
+        <input type="text" id="initials" name="initials"><br><br>
         <button class="reset" id="reset">Restart Quiz</button>
+        <button class="submit" id="submit">Submit</button>
     </div>
+    <div class="viewHighScores" id="viewHighScores"></div>
 </body>
 <script src="./Assets/script.js"></script>
 </html>
