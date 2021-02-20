@@ -42,6 +42,15 @@ let score = 0;
 let reset = document.querySelector("#reset");
 let submit = document.querySelector("#submit");
 let outputScore = document.querySelector("#outputScore");
+let highScores = [];
+let initialsBox = document.querySelector('#initials')
+let feedback = document.querySelector('#feedback');
+
+//High Scores Varibles
+let highScoresBtn = document.querySelector('#highScoresBtn');
+let clear = document.querySelector('#clear');
+let highScoresList = [];
+let quiz = document.querySelector('#takeQuiz');
 
 /**************************************************************/
 //Functions
@@ -60,6 +69,7 @@ function countdown() {
 
 //Generate Questions
 function generateQs() {
+    document.getElementById('QuestionBox').style.visibility = 'visible';
     score = 0;
     questionBox.innerHTML = "";
     answer1.innerHTML= "";
@@ -67,6 +77,7 @@ function generateQs() {
     answer3.innerHTML= "";
     answer4.innerHTML= "";
     document.getElementById("submitDiv").style.visibility = "hidden";
+    document.getElementById('viewHighScores').style.visibility = 'hidden';
     
     
     if (Qindex >= Questions.length) {
@@ -104,29 +115,53 @@ function checker(event) {
     let userAnswer = event.target.textContent;
     console.log(userAnswer);
     console.log(Questions[Qindex].Correct);
+   
 
     if (userAnswer === Questions[Qindex].Correct) {
         console.log("correct");
         Qindex++;
+        feedback.textContent = "Correct!"
         generateQs();
     }else {
         console.log("incorrect");
         Qindex++;
+        timeRemaining = timeRemaining - 15;
+        feedback.textContent = "Incorrect!"
         generateQs();
     } 
 }
 
 //End Quiz Function
 function quizComplete() {
+    //document.getElementById('viewHighScores').style.visibility = 'visible';
     console.log("Quiz Complete");
     document.getElementById("timer").style.visibility = "hidden";
-    let score = timeRemaining;
+    score = timeRemaining;
     console.log(score);
     outputScore.textContent = "Your Score is: " + score;
-    //need to create high scores display
-    //need to hide timer  
-    document.getElementById("submitDiv").style.visibility = "visible";
-    
+    document.getElementById("submitDiv").style.visibility = "visible"; 
+    feedback.textContent = '';   
+}
+
+//View High Scores Function
+function viewHighScores() {
+    document.getElementById('QuestionBox').style.visibility = 'hidden';
+    document.getElementById("Answer1").style.visibility = "hidden";
+    document.getElementById("Answer2").style.visibility = "hidden";
+    document.getElementById("Answer3").style.visibility = "hidden";
+    document.getElementById("Answer4").style.visibility = "hidden";
+    document.getElementById('submitDiv').style.visibility = 'hidden';
+    document.getElementById('viewHighScores').style.visibility = 'visible';
+    document.getElementById('timer').style.visibility = 'hidden';
+
+    highScoresList = JSON.parse(localStorage.getItem("highScores"))
+    console.log(highScoresList);
+
+    for (i=0; i< highScoresList.length; i++) {
+        let createLi = document.createElement("li");
+        createLi.textContent = highScoresList[i];
+        highscore.appendChild(createLi);
+    }   
 }
 
 /*************************************************************/
@@ -143,9 +178,35 @@ reset.addEventListener("click", function(){
     Qindex = 0;
     timeRemaining = 76;
     generateQs();
-    countdown();  
+    countdown(); 
+    //location.reload(); 
 });
 
-//Log High Scores
+//Submit
+submit.addEventListener("click", function(){
+    let initials = initialsBox.value;
+    let userScore = initials + "-" + score;
+    console.log(userScore);
+    highScores.push(userScore);
+    console.log(highScores);
+    document.getElementById('initials').value = '';
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+})
 
 //Check High Scores
+highScoresBtn.addEventListener('click', function(){
+    viewHighScores();
+})
+
+//Clear
+clear.addEventListener('click', function(){
+    localStorage.clear();
+    location.reload();
+})
+
+//Quiz
+quiz.addEventListener('click', function(){
+    //location.reload();
+    generateQs();
+    countdown(); 
+})

@@ -1,3 +1,6 @@
+* {
+    background-color: silver;   
+}
 .header {
     display: flex;
 }
@@ -8,19 +11,29 @@
     width: 50%;    
 }
 
+.highScoresBtn {
+    background-color: darkslategray;
+    color: silver;
+}
+
 .timer {
     text-align: right;
     display: flex;
     flex-wrap: nowrap;
     width: 50%;
-    visibility: visible;    
+    visibility: visible; 
+     
 }
 
 .QuestionBox {
     margin: auto;
     height: auto;
-    width: 500px;
-    
+    width: 500px;   
+}
+
+.start {
+    background-color: darkslategray;
+    color: silver;
 }
 
 .QuestionBox h1 {
@@ -36,6 +49,9 @@
 .Answer {
     text-align: left;
     visibility: hidden;
+    background-color: darkslategray;
+    color: silver;
+    margin-top: 5px;
 }
 
 .submitDiv {
@@ -45,7 +61,35 @@
     width: 500px;  
 }
 
-.viewHighScores {
-    visibility: "hidden"
+.reset {
+    background-color: darkslategray;
+    color: silver;
 }
 
+.submit {
+    background-color: darkslategray;
+    color: silver;
+}
+
+.viewHighScores {
+    visibility: hidden;
+    margin: auto;
+    height: auto;
+    width: 500px; 
+    position: absolute;
+    top: 60px;
+    left: 5%;
+    height: 500px;
+    width: 500px;
+    z-index: 99;
+}
+
+.takeQuiz {
+    background-color: darkslategray;
+    color: silver;
+}
+
+.clear {
+    background-color: darkslategray;
+    color: silver;
+}
