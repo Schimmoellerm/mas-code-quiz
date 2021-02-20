@@ -4,7 +4,7 @@ This project created code quiz that will dynamically update with new questions a
 
 ![code-quiz-gif](./Assets/gif/code-quiz.gif)
 
-[MAS Code Quiz](https://)
+[MAS Code Quiz](https://schimmoellerm.github.io/mas-code-quiz/.)
 ## Instructions
 
 1. The user clicks the start button which starts the quiz and starts the timer at 75 seconds.
