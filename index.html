@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./Assets/style.css">
 </head>
 <body>
+    <!--contains timer and view high scores button-->
     <div class="header">
         <div class="highScores" id="highScores">
             <button class="highScoresBtn" id="highScoresBtn">View High Scores</button>
@@ -15,6 +16,7 @@
         <p class="timer" id="timer">Timer:</p>   
     </div>
 
+    <!--Questions generated here with four options for answers-->
     <div class="QuestionBox" id="QuestionBox">
         <h1>Coding Quiz Challenge</h1>
         <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by fifteen seconds!</p>
@@ -22,6 +24,7 @@
             <button class ="start" id="start">Start</button>
         </div>
     </div>
+    <!--Answer Buttons-->
     <div class="AnswersBox" id="AnswersBox">
         <button class="Answer" id="Answer1"></button>
         <button class="Answer" id="Answer2"></button>
@@ -29,6 +32,7 @@
         <button class="Answer" id="Answer4"></button>
         <p class="feedback" id="feedback"></p>
     </div>
+    <!--Div will display score and allow you to submit initials to highscores-->
     <div class="submitDiv" id="submitDiv">
         <p class="outputScore" id="outputScore"></p>
         <form>
@@ -38,9 +42,11 @@
         <button class="reset" id="reset">Restart Quiz</button>
         <button class="submit" id="submit">Submit</button>
     </div>
+    <!--Displays high scores -->
     <div class="viewHighScores" id="viewHighScores">
         <h1>High Scores</h1>
         <ul id="highscore"></ul>
+        <!--start quiz and clear high score buttons-->
         <button class="takeQuiz" id="takeQuiz">Quiz</button>
         <button class="clear" id="clear">Clear</button>
     </div>

@@ -35,24 +35,24 @@ let answer1 = document.querySelector("#Answer1");
 let answer2 = document.querySelector("#Answer2");
 let answer3 = document.querySelector("#Answer3");
 let answer4 = document.querySelector("#Answer4");
-let Qindex = 0;
+let Qindex = 0; //Used to pull Questions out of the array
 
 //quizComplete Variables
 let score = 0;
 let reset = document.querySelector("#reset");
 let submit = document.querySelector("#submit");
 let outputScore = document.querySelector("#outputScore");
-let highScores = [];
+let highScores = [];//stores score into array on submit
 let initialsBox = document.querySelector('#initials')
 let feedback = document.querySelector('#feedback');
 
 //High Scores Varibles
 let highScoresBtn = document.querySelector('#highScoresBtn');
 let clear = document.querySelector('#clear');
-let highScoresList = [];
+let highScoresList = [];//Used to create list of high scores after pulling them from local storage
 let quiz = document.querySelector('#takeQuiz');
 
-/**************************************************************/
+/**************************************************************************************************/
 //Functions
 //Timer (75 seconds)
 function countdown() {
@@ -79,16 +79,15 @@ function generateQs() {
     document.getElementById("submitDiv").style.visibility = "hidden";
     document.getElementById('viewHighScores').style.visibility = 'hidden';
     
-    
+    //If there are no more questions in the array it goes to the end quiz function
     if (Qindex >= Questions.length) {
         document.getElementById("Answer1").style.visibility = "hidden";
         document.getElementById("Answer2").style.visibility = "hidden";
         document.getElementById("Answer3").style.visibility = "hidden";
         document.getElementById("Answer4").style.visibility = "hidden";
         quizComplete();
-        
+    //Otherwise it displays the next answer in the array    
     }else {
-        
         let postedQ = Questions[Qindex].Question;
         let postedA1 = Questions[Qindex].Answers[0];
         let postedA2 = Questions[Qindex].Answers[1];
@@ -116,7 +115,6 @@ function checker(event) {
     console.log(userAnswer);
     console.log(Questions[Qindex].Correct);
    
-
     if (userAnswer === Questions[Qindex].Correct) {
         console.log("correct");
         Qindex++;
@@ -133,7 +131,6 @@ function checker(event) {
 
 //End Quiz Function
 function quizComplete() {
-    //document.getElementById('viewHighScores').style.visibility = 'visible';
     console.log("Quiz Complete");
     document.getElementById("timer").style.visibility = "hidden";
     score = timeRemaining;
@@ -157,14 +154,17 @@ function viewHighScores() {
     highScoresList = JSON.parse(localStorage.getItem("highScores"))
     console.log(highScoresList);
 
+    highscore.innerHTML = '';
+
     for (i=0; i< highScoresList.length; i++) {
         let createLi = document.createElement("li");
+        createLi.style.cssText = "list-style-type: none; margin-top: 5px;"
         createLi.textContent = highScoresList[i];
         highscore.appendChild(createLi);
     }   
 }
 
-/*************************************************************/
+/**********************************************************************************************/
 //Buttons
 //Start Button
 document.getElementById("start").addEventListener("click", function(){
@@ -172,17 +172,16 @@ document.getElementById("start").addEventListener("click", function(){
     generateQs();
 });
 
-//Restart Quiz
+//Restart Quiz Button
 reset.addEventListener("click", function(){
     console.log("something");
     Qindex = 0;
     timeRemaining = 76;
     generateQs();
     countdown(); 
-    //location.reload(); 
 });
 
-//Submit
+//Submit Button
 submit.addEventListener("click", function(){
     let initials = initialsBox.value;
     let userScore = initials + "-" + score;
@@ -191,22 +190,24 @@ submit.addEventListener("click", function(){
     console.log(highScores);
     document.getElementById('initials').value = '';
     localStorage.setItem("highScores", JSON.stringify(highScores));
+    viewHighScores()
 })
 
-//Check High Scores
+//Check High Scores Button
 highScoresBtn.addEventListener('click', function(){
     viewHighScores();
 })
 
-//Clear
+//Clear Button
 clear.addEventListener('click', function(){
     localStorage.clear();
     location.reload();
 })
 
-//Quiz
+//Quiz Button
 quiz.addEventListener('click', function(){
-    //location.reload();
+    Qindex = 0;
+    timeRemaining = 76;
     generateQs();
     countdown(); 
 })
